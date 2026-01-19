@@ -12,15 +12,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   try {
-    // Attempt to use generated options
+    //firebase initialization with options from CLI
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
   } catch (e) {
     print("Firebase Init Error (Using Default/Manual?): $e");
     try {
-      // Fallback for web or if options missing but config in place?
-      // Or just try default init if CLI failed
+      //prevent firebase crashing app if not configured
       await Firebase.initializeApp();
     } catch (e2) {
       print("Failed to initialize Firebase: $e2");
@@ -35,10 +34,10 @@ void main() async {
     ),
   );
 
-  runApp(const MyApp());
+  runApp(const MyApp());//launch app
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget {//UI root
   const MyApp({super.key});
 
   @override

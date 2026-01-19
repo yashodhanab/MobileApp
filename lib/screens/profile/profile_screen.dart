@@ -104,10 +104,12 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading)
+    if (_isLoading) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
-    if (_user == null)
+    }
+    if (_user == null) {
       return const Scaffold(body: Center(child: Text("User not found")));
+    }
 
     final allPosts = Provider.of<FeedProvider>(context).posts;
     final userPosts = allPosts.where((p) => p.userId == widget.userId).toList();

@@ -12,7 +12,7 @@ class DatabaseService {
   // We will listen to the stream in the provider, but here's a helper to get the query
   Query get postsQuery => _db.child('posts').orderByChild('timestamp');
 
-  Future<void> likePost(String postId, String userId) async {
+  Future<void> likePost(String postId, String userId) async {//runTransaction to toggle likes
     final postRef = _db.child('posts').child(postId);
     await postRef.runTransaction((Object? post) {
       if (post == null) {
